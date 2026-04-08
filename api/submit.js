@@ -68,8 +68,8 @@ module.exports = async function handler(req, res) {
       return res.status(200).json({ ok: true });
     } else {
       const err = await response.json();
-      console.error('Resend error:', err);
-      return res.status(500).json({ error: 'Failed to send email' });
+      console.error('Brevo error:', JSON.stringify(err));
+      return res.status(500).json({ error: 'Failed to send email', detail: err });
     }
   } catch (err) {
     console.error('Server error:', err);
