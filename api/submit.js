@@ -50,17 +50,17 @@ module.exports = async function handler(req, res) {
   `;
 
   try {
-    const response = await fetch('https://api.resend.com/emails', {
+    const response = await fetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+        'api-key': process.env.BREVO_API_KEY,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'Ex-Change! <onboarding@resend.dev>',
-        to: [email],
+        sender: { name: 'Ex-Change!', email: 'exchangegame.info@gmail.com' },
+        to: [{ email }],
         subject: 'Your Ex-Change! links are here 🎯',
-        html,
+        htmlContent: html,
       }),
     });
 
