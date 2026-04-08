@@ -1115,10 +1115,14 @@
       btn.textContent = 'Sending...';
 
       try {
-        const res = await fetch('https://formspree.io/f/mvzvyjkj', {
+        const data = {
+          name: form.querySelector('[name="name"]').value,
+          email: form.querySelector('[name="email"]').value,
+        };
+        const res = await fetch('/api/submit', {
           method: 'POST',
-          body: new FormData(form),
-          headers: { Accept: 'application/json' }
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
         });
 
         if (res.ok) {
