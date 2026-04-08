@@ -590,6 +590,25 @@
       color: rgba(255,255,255,0.4);
       margin-top: 1rem;
     }
+    .cta__success {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      color: var(--gold-light);
+      letter-spacing: 0.05em;
+      padding: 1rem 0 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .cta__error {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: #e57373;
+      padding: 0.5rem 0;
+      margin-bottom: 0.5rem;
+    }
+    [data-fs-submit-btn]:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
     .cta__perks {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -1022,10 +1041,14 @@
             <p class="cta__perk-text">Connect with other players, share strategies, and follow development.</p>
           </div>
         </div>
-        <form class="cta__form" onsubmit="handleSubmit(event)">
-          <input type="text" class="cta__input" placeholder="Your name" required>
-          <input type="email" class="cta__input" placeholder="Your email" required>
-          <button type="submit" class="cta__button">Send Me the Links</button>
+        <div data-fs-success class="cta__success" style="display:none">
+          <p>✓ &nbsp;We've got you. Check your inbox for the links.</p>
+        </div>
+        <div data-fs-error class="cta__error" style="display:none"></div>
+        <form id="interest-form" class="cta__form">
+          <input type="text" name="name" class="cta__input" placeholder="Your name" required data-fs-field>
+          <input type="email" name="email" class="cta__input" placeholder="Your email" required data-fs-field>
+          <button type="submit" class="cta__button" data-fs-submit-btn>Send Me the Links</button>
         </form>
         <p class="cta__note">No spam. Just the good stuff.</p>
       </div>
@@ -1078,22 +1101,10 @@
       }
     });
 
-    // Form handler
-    function handleSubmit(e) {
-      e.preventDefault();
-      const btn = e.target.querySelector('.cta__button');
-      btn.textContent = 'Thank You!';
-      btn.style.background = '#2A6B3F';
-      btn.style.color = '#fff';
-      btn.disabled = true;
-      setTimeout(() => {
-        btn.textContent = 'Get Ex-Change!';
-        btn.style.background = '';
-        btn.style.color = '';
-        btn.disabled = false;
-        e.target.reset();
-      }, 3000);
-    }
+    // Formspree init
+    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+    formspree('initForm', { formElement: '#interest-form', formId: 'xvzvyjzj' });
   </script>
+  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </body>
 </html>
