@@ -28,9 +28,9 @@ module.exports = async function handler(req, res) {
       <a href="https://stock-exchange-game-gh4b.onrender.com/" style="color:#D4BA6A;font-size:0.9rem;">Click here to play Ex-Change! online</a>
     </p>
 
-    <p style="margin:0 0 16px;font-size:0.9rem;color:#9A9590;">
-      💬 &nbsp;<strong style="color:#8A7535;">Discord</strong> — Coming soon<br>
-      <span style="font-size:0.85rem;">We'll send the invite when the server is live.</span>
+    <p style="margin:0 0 16px;">
+      💬 &nbsp;<strong style="color:#C9A84C;">Discord</strong><br>
+      <a href="https://discord.gg/cJRfSAsR" style="color:#D4BA6A;font-size:0.9rem;">Click here to join the Ex-Change! Discord server</a>
     </p>
 
     <p style="margin:0;font-size:0.9rem;color:#9A9590;">
