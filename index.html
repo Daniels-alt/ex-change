@@ -1041,14 +1041,16 @@
             <p class="cta__perk-text">Connect with other players, share strategies, and follow development.</p>
           </div>
         </div>
-        <div data-fs-success class="cta__success" style="display:none">
-          <p>✓ &nbsp;We've got you. Check your inbox for the links.</p>
+        <div id="fs-success" class="cta__success" style="display:none">
+          ✓ &nbsp;We've got you. Check your inbox for the links.
         </div>
-        <div data-fs-error class="cta__error" style="display:none"></div>
+        <div id="fs-error" class="cta__error" style="display:none">
+          Something went wrong. Please try again.
+        </div>
         <form id="interest-form" class="cta__form">
-          <input type="text" name="name" class="cta__input" placeholder="Your name" required data-fs-field>
-          <input type="email" name="email" class="cta__input" placeholder="Your email" required data-fs-field>
-          <button type="submit" class="cta__button" data-fs-submit-btn>Send Me the Links</button>
+          <input type="text" name="name" class="cta__input" placeholder="Your name" required>
+          <input type="email" name="email" class="cta__input" placeholder="Your email" required>
+          <button type="submit" class="cta__button">Send Me the Links</button>
         </form>
         <p class="cta__note">No spam. Just the good stuff.</p>
       </div>
@@ -1101,10 +1103,39 @@
       }
     });
 
-    // Formspree init
-    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-    formspree('initForm', { formElement: '#interest-form', formId: 'mvzvyjkj' });
+    // Formspree submission
+    document.getElementById('interest-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const btn = form.querySelector('button');
+      const success = document.getElementById('fs-success');
+      const error = document.getElementById('fs-error');
+
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+
+      try {
+        const res = await fetch('https://formspree.io/f/mvzvyjkj', {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' }
+        });
+
+        if (res.ok) {
+          form.style.display = 'none';
+          error.style.display = 'none';
+          success.style.display = 'block';
+        } else {
+          error.style.display = 'block';
+          btn.disabled = false;
+          btn.textContent = 'Send Me the Links';
+        }
+      } catch {
+        error.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Send Me the Links';
+      }
+    });
   </script>
-  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </body>
 </html>
