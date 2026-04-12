@@ -33,10 +33,6 @@ module.exports = async function handler(req, res) {
       <a href="https://discord.gg/cJRfSAsR" style="color:#D4BA6A;font-size:0.9rem;">Click here to join the Ex-Change! Discord server</a>
     </p>
 
-    <p style="margin:0;font-size:0.9rem;color:#9A9590;">
-      🧮 &nbsp;<strong style="color:#8A7535;">Score Calculator</strong> — Coming soon<br>
-      <span style="font-size:0.85rem;">We'll send the link when it's ready.</span>
-    </p>
   </div>
 
   <p style="font-size:0.95rem;line-height:1.7;color:#9A9590;">
