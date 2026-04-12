@@ -41,6 +41,7 @@ module.exports = async function handler(req, res) {
 
   <hr style="border:none;border-top:1px solid #8A7535;margin:24px 0;">
   <p style="font-size:0.75rem;color:#9A9590;margin:0;">© 2025 Ex-Change! Card Game</p>
+  <p style="font-size:0.7rem;color:#6B6660;margin-top:12px;">To unsubscribe from launch updates, reply to this email with the subject "Unsubscribe".</p>
 
 </div>
   `;
